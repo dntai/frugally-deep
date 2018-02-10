@@ -51,15 +51,12 @@ add_custom_command ( OUTPUT readme_example_model.json
 hunter_add_package(doctest)
 find_package(doctest CONFIG REQUIRED)
 
-hunter_add_package(nlohmann_json)
-find_package(nlohmann_json CONFIG REQUIRED)
-
 macro(_add_test _NAME _DEPENDS)
     add_custom_target(${_NAME}_data DEPENDS ${_DEPENDS})
     add_executable(${_NAME} ${_NAME}.cpp)
     add_dependencies(${_NAME} ${_NAME}_data)
     add_test(NAME ${_NAME} COMMAND ${_NAME})
-    target_link_libraries(${_NAME} fdeep Threads::Threads doctest::doctest nlohmann_json)
+    target_link_libraries(${_NAME} fdeep Threads::Threads doctest::doctest)
 endmacro()
 
 _add_test(test_model_small_test test_model_small.json)

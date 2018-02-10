@@ -38,6 +38,10 @@ hunter_add_package(Eigen) # default noop
 find_package(Eigen3 CONFIG REQUIRED)
 target_link_libraries(fdeep INTERFACE Eigen3::Eigen)
 
+hunter_add_package(nlohmann_json) # default noop
+find_package(nlohmann_json CONFIG REQUIRED)
+target_link_libraries(fdeep INTERFACE nlohmann_json)
+
 if(FDEEP_BUILD_UNITTEST)
     enable_testing()
     subdirs(test)
